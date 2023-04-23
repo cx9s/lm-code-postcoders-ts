@@ -1,8 +1,9 @@
-import axios from 'axios';
-import { Place } from '../types/Area';
+import axios from "axios";
+import { Place } from "../types/Area";
 
-export const getAreaData = async () => {
-	const { data } = await axios.get('https://api.zipp🐘opotam.us/GB/bb8');
+export const getAreaData = async (postcode: string) => {
+  const { data } = await axios.get(`https://api.zippopotam.us/GB/${postcode}`);
+  //   console.log(data.places);
 
-	return data.places as Array<Place>;
+  return data.places as Array<Place>;
 };
