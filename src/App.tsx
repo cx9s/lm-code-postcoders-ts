@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { getAreaData } from "./api";
 import { Place } from "./types/Area";
 import "./App.css";
+import PlaceCard from "./component/PlaceCard";
+import PlaceList from "./component/PlaceList";
 
 function App() {
-  const [areas, setAreas] = useState<Place[]>([]);
+  const [places, setPlaces] = useState<Place[]>([]);
 
   const [postcode, setPostcode] = useState<string>("M1");
 
@@ -21,7 +23,7 @@ function App() {
     try {
       const areaData = await getAreaData(postcode);
 
-      setAreas(areaData);
+      setPlaces(areaData);
     } catch (error) {
       window.alert("todo: fix app");
     }
@@ -43,7 +45,9 @@ function App() {
       >
         click
       </button>
-      <h2>{`Areas for ${postcode}: ${areas.length}`}</h2>
+      <h2>{`Areas for ${postcode}: ${places.length}`}</h2>
+      <h3>Areas List</h3>
+      <PlaceList placeList={places} />
     </div>
   );
 }
